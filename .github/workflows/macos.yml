@@ -41,9 +41,12 @@ jobs:
         run: gojni/target/gluonfx/x86_64-darwin/GoBtc & sleep 5; kill $!
 
       - name: Upload 
-        uses: zzvio/action-megacmd@master
-        with:
-          args: put -c ~/.java/packages/lib/libgobtc.dylib /go-plugins/btc/Darwin-x86_64/libgobtc.dylib
+        run: |
+          export PATH=/Applications/MEGAcmd.app/Contents/MacOS:$PATH
+          mega-logout
+          mega-login ''$USERNAME'' ''$PASSWORD''
+          mega-put -c ~/.java/packages/lib/libgobtc.dylib /go-plugins/btc/Darwin-x86_64/libgobtc.dylib
+          mega-logout
         env:
           USERNAME: ${{ secrets.MEGA_USERNAME }}
           PASSWORD: ${{ secrets.MEGA_PASSWORD }}
