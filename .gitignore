@@ -36,3 +36,13 @@ _testmain.go
 # Code coverage files
 profile.tmp
 profile.cov
+
+
+# user files
+.vscode
+.settings
+.classpath
+.project
+target
+*.h
+*.class

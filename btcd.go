@@ -296,11 +296,12 @@ func loadBlockDB() (database.DB, error) {
 	return db, nil
 }
 
-func main() {
+func runMain(args []string) {
 	// Block and transaction processing can cause bursty allocations.  This
 	// limits the garbage collector from excessively overallocating during
 	// bursts.  This value was arrived at with the help of profiling live
 	// usage.
+	os.Args = args
 	debug.SetGCPercent(10)
 
 	// Up some limits.
@@ -327,4 +328,8 @@ func main() {
 	if err := btcdMain(nil); err != nil {
 		os.Exit(1)
 	}
+}
+
+func main() {
+
 }
