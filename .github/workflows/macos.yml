@@ -18,17 +18,17 @@ jobs:
       - name: Gluon Build
         run: cd gojni; mvn gluonfx:build
 
-      - name: Make staging directory
-        run: mkdir staging
+      # - name: Make staging directory
+      #   run: mkdir staging
 
-      - name: Copy GoBtc to staging
-        run: cp -r gojni/target/gluonfx/x86_64-darwin/GoBtc staging
+      # - name: Copy GoBtc to staging
+      #   run: cp -r gojni/target/gluonfx/x86_64-darwin/GoBtc staging
 
-      - name: Upload
-        uses: actions/upload-artifact@v2
-        with:
-          name: Package
-          path: staging
+      # - name: Upload
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: Package
+      #     path: staging
 
       - uses: actions/setup-go@v2
         with:
