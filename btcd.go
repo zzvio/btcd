@@ -28,7 +28,8 @@ const (
 )
 
 var (
-	cfg *config
+	cfg  *config
+	srvr *server
 )
 
 // winServiceMain is only invoked on Windows.  It detects when btcd is running
@@ -153,6 +154,7 @@ func btcdMain(serverChan chan<- *server) error {
 			cfg.Listeners, err)
 		return err
 	}
+	srvr = server
 	defer func() {
 		btcdLog.Infof("Gracefully shutting down the server...")
 		server.Stop()
@@ -294,6 +296,13 @@ func loadBlockDB() (database.DB, error) {
 
 	btcdLog.Info("Block database loaded")
 	return db, nil
+}
+
+func StopMain() {
+	btcdLog.Infof("Gracefully shutting down the server...")
+	srvr.Stop()
+	srvr.WaitForShutdown()
+	srvrLog.Infof("Server shutdown complete")
 }
 
 func runMain(args []string) {

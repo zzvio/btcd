@@ -25,8 +25,8 @@ func getBytes(env uintptr, iarr uintptr) []byte {
 	return buf
 }
 
-//export Java_io_zzv_jni_Main_call
-func Java_io_zzv_jni_Main_call(env uintptr, clazz uintptr, iarr uintptr) uintptr {
+//export Java_io_zzv_plugins_BtcLoader_call
+func Java_io_zzv_plugins_BtcLoader_call(env uintptr, clazz uintptr, iarr uintptr) uintptr {
 	mtx.Lock()
 	defer mtx.Unlock()
 
